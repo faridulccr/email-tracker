@@ -18,13 +18,13 @@ const EmailForm = () => {
         const getAllRecipients = async () => {
             try {
                 const response = await axios.get(
-                    "https://emailtracking.herokuapp.com/recipient"
+                    "http://emailtracking.herokuapp.com/recipient"
                 );
                 setRecipients(response.data);
                 setLoading(false);
                 // console.log(response.data);
             } catch (error) {
-                // console.log(error);
+                console.log(error);
                 setLoading(false);
             }
         };
@@ -47,7 +47,7 @@ const EmailForm = () => {
             setError(false);
             setLoading(true);
             const response = await axios.post(
-                "https://emailtracking.herokuapp.com/recipient/send-email",
+                "http://emailtracking.herokuapp.com/recipient/send-email",
                 {
                     adminEmail: process.env.REACT_APP_EMAIL_ID,
                     recipient: emailData.to,
@@ -63,7 +63,7 @@ const EmailForm = () => {
         } catch (error) {
             setError(true);
             setLoading(false);
-            // console.error(error);
+            console.error(error);
         }
     };
 
