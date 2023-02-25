@@ -47,7 +47,7 @@ const EmailForm = () => {
             setError(false);
             setLoading(true);
             const response = await axios.post(
-                "https://emailtracking.herokuapp.com/send-email",
+                "https://emailtracking.herokuapp.com/recipient/send-email",
                 {
                     adminEmail: process.env.REACT_APP_EMAIL_ID,
                     recipient: emailData.to,
