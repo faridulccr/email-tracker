@@ -1,0 +1,71 @@
+.email-form-container {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    padding: 20px;
+    column-gap: 30px;
+}
+
+.email-form {
+    height: fit-content;
+
+    input {
+        border: none;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 100%;
+        margin-bottom: 10px;
+        height: 55px;
+        font-size: 18px;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+        width: fit-content;
+        padding: 0 25px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    input[type="submit"] {
+        margin-left: 20px;
+        &:hover {
+            background-color: rgba(10, 201, 51, 0.884);
+        }
+    }
+    input[type="reset"] {
+        &:hover {
+            background-color: rgba(230, 39, 48, 0.884);
+        }
+    }
+    textarea {
+        border: none;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 18px;
+        height: 200px;
+        resize: none;
+        overflow-y: auto;
+    }
+}
+
+.status-container {
+    background-color: #7e638e;
+    border-radius: 20px;
+    padding: 10px 25px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+@media screen and (max-width: 500px) {
+    .email-form-container {
+        display: block;
+    }
+    .status-container {
+        margin-top: 50px;
+    }
+}

@@ -1,0 +1,42 @@
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-form {
+    width: 400px;
+    height: fit-content;
+
+    input {
+        border: none;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 100%;
+        margin-bottom: 10px;
+        height: 55px;
+        font-size: 18px;
+    }
+    input[type="submit"] {
+        width: fit-content;
+        padding: 0 25px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+            background-color: rgba(10, 201, 51, 0.884);
+        }
+    }
+}
+
+.btn-container {
+    display: flex;
+    justify-content: right;
+}
+@media screen and (max-width: 540px) {
+    .login-form {
+        width: 100%;
+    }
+}
