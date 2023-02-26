@@ -18,7 +18,7 @@ const EmailForm = () => {
         const getAllRecipients = async () => {
             try {
                 const response = await axios.get(
-                    "http://emailtracking.herokuapp.com/recipient"
+                    "https://emailtracking.herokuapp.com/recipient"
                 );
                 setRecipients(response.data);
                 setLoading(false);
@@ -47,7 +47,7 @@ const EmailForm = () => {
             setError(false);
             setLoading(true);
             const response = await axios.post(
-                "http://emailtracking.herokuapp.com/recipient/send-email",
+                "https://emailtracking.herokuapp.com/recipient/send-email",
                 {
                     adminEmail: process.env.REACT_APP_EMAIL_ID,
                     recipient: emailData.to,
