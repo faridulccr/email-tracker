@@ -18,7 +18,7 @@ const EmailForm = () => {
         const getAllRecipients = async () => {
             try {
                 const response = await axios.get(
-                    "https://emailtracking.herokuapp.com/recipient"
+                    "https://emailtrackinglive.herokuapp.com/recipient"
                 );
                 setRecipients(response.data);
                 setLoading(false);
