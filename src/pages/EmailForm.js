@@ -122,9 +122,15 @@ const EmailForm = () => {
                     </div>
                 </form>
                 {loading && <h1>Loading...</h1>}
-                {!loading && !error && recipients.length > 0 && (
-                    <Status recipients={recipients} deleteEmail={deleteEmail} />
-                )}
+                {!loading &&
+                    !error &&
+                    Array.isArray(recipients) &&
+                    recipients.length > 0 && (
+                        <Status
+                            recipients={recipients}
+                            deleteEmail={deleteEmail}
+                        />
+                    )}
             </div>
         </>
     );
