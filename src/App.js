@@ -4,7 +4,7 @@ import EmailForm from "./pages/EmailForm";
 import Login from "./pages/Login";
 
 const App = () => {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const handleLogin = (value) => {
         setIsLogin(value);
     };

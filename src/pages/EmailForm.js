@@ -67,6 +67,7 @@ const EmailForm = () => {
         }
     };
 
+    const deleteEmail = (id) => {};
     // handle reset
     const handleReset = () => {
         setEmailData({
@@ -122,7 +123,7 @@ const EmailForm = () => {
                 </form>
                 {loading && <h1>Loading...</h1>}
                 {!loading && !error && recipients.length > 0 && (
-                    <Status recipients={recipients} />
+                    <Status recipients={recipients} deleteEmail={deleteEmail} />
                 )}
             </div>
         </>

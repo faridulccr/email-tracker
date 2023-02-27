@@ -1,5 +1,5 @@
 import "./Status.style.scss";
-const Status = ({ recipients }) => {
+const Status = ({ recipients, deleteEmail }) => {
     return (
         <>
             <div className="status-container">
@@ -23,8 +23,19 @@ const Status = ({ recipients }) => {
                                 </p>
                             </div>
                             <div className="time-log">
-                                <p>
-                                    <strong>Sent:</strong> {recipient.sentTime}
+                                <p className="dlt-btn-container">
+                                    <p>
+                                        <strong>Sent:</strong>{" "}
+                                        {recipient.sentTime}
+                                    </p>
+                                    <p
+                                        className="delete-btn"
+                                        onClick={() => {
+                                            deleteEmail(recipient.id);
+                                        }}
+                                    >
+                                        <span>+</span>
+                                    </p>
                                 </p>
                                 <p className="recipient">
                                     <strong>Recipient:</strong>

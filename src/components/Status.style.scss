@@ -17,6 +17,23 @@
         .recipient {
             overflow-x: auto;
         }
+        .dlt-btn-container {
+            display: flex;
+            justify-content: space-between;
+            .delete-btn {
+                cursor: pointer;
+                background-color: red;
+                padding: 0 6px;
+                border-radius: 50%;
+                span {
+                    display: block;
+                    color: white;
+                    transform: rotate(45deg);
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+        }
     }
     .status-sec p:first-of-type {
         margin-bottom: 10px;
