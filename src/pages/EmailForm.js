@@ -68,7 +68,7 @@ const EmailForm = () => {
     };
 
     const deleteEmail = async (id) => {
-        const response = await axios.post(
+        const response = await axios.delete(
             `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient/delete-email/${id}`
         );
         console.log(response.data);
