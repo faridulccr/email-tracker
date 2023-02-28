@@ -11,6 +11,7 @@ const EmailForm = () => {
         message: "",
     });
     const [loading, setLoading] = useState(true);
+    const [sentLoading, setSentLoading] = useState(false);
     const [error, setError] = useState(false);
     const [recipients, setRecipients] = useState([]);
 
@@ -45,7 +46,7 @@ const EmailForm = () => {
         event.preventDefault();
         try {
             setError(false);
-            setLoading(true);
+            setSentLoading(true);
             const response = await axios.post(
                 `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient/send-email`,
                 {
@@ -59,7 +60,7 @@ const EmailForm = () => {
             setRecipients((prev) => {
                 return [...prev, response.data];
             });
-            setLoading(false);
+            setSentLoading(false);
         } catch (error) {
             setError(true);
             setLoading(false);
@@ -133,16 +134,13 @@ const EmailForm = () => {
                         <input type="submit" value="Send" />
                     </div>
                 </form>
-                {loading && <h1>Loading...</h1>}
-                {!loading &&
-                    !error &&
-                    Array.isArray(recipients) &&
-                    recipients.length > 0 && (
-                        <Status
-                            recipients={recipients}
-                            deleteEmail={deleteEmail}
-                        />
-                    )}
+                <Status
+                    recipients={recipients}
+                    deleteEmail={deleteEmail}
+                    loading={loading}
+                    sentLoading={sentLoading}
+                    error={error}
+                />
             </div>
         </>
     );

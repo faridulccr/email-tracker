@@ -1,3 +1,25 @@
+.all-card-container {
+    position: relative;
+    .delete-btn {
+        position: absolute;
+        right: -6px;
+        top: -7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: red;
+        border: none;
+        transform: rotate(45deg);
+        border-radius: 50%;
+    }
+}
+
 .status-card {
     background-color: #e7d05b;
     border-radius: 5px;
@@ -17,24 +39,23 @@
         .recipient {
             overflow-x: auto;
         }
-        .dlt-btn-container {
-            display: flex;
-            justify-content: space-between;
-            .delete-btn {
-                cursor: pointer;
-                width: 20px;
-                height: 20px;
-                font-size: 18px;
-                font-weight: bold;
-                color: white;
-                background-color: red;
-                border: none;
-                transform: rotate(45deg);
-                border-radius: 50%;
-            }
-        }
     }
     .status-sec p:first-of-type {
         margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .status-card {
+        display: block;
+    }
+    .status-sec,
+    .body-sec,
+    .time-log {
+        margin-bottom: 10px;
+        display: block;
+    }
+    .status-sec p:first-of-type {
+        margin-bottom: 0;
     }
 }
