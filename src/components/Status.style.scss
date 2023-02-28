@@ -22,16 +22,15 @@
             justify-content: space-between;
             .delete-btn {
                 cursor: pointer;
+                width: 20px;
+                height: 20px;
+                font-size: 18px;
+                font-weight: bold;
+                color: white;
                 background-color: red;
-                padding: 0 6px;
+                border: none;
+                transform: rotate(45deg);
                 border-radius: 50%;
-                span {
-                    display: block;
-                    color: white;
-                    transform: rotate(45deg);
-                    font-size: 20px;
-                    font-weight: bold;
-                }
             }
         }
     }

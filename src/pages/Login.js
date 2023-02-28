@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.style.scss";
 
-const Login = ({ handleLogin }) => {
+const Login = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -27,11 +27,17 @@ const Login = ({ handleLogin }) => {
             formData.password === process.env.REACT_APP_ADMIN_PASS
         ) {
             setIsMatch(true);
-            handleLogin(true);
-            navigate("/tracking-app");
+            localStorage.setItem(
+                "loginStatus",
+                JSON.stringify({
+                    isLogin: true,
+                })
+            );
+            navigate("/tracking-page");
+            window.location.reload(false);
+            // The false parameter tells the browser to reload the page from its cache
         } else {
             setIsMatch(false);
-            handleLogin(false);
             setTimeout(() => {
                 setIsMatch(true);
             }, 5000);

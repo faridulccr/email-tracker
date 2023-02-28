@@ -68,16 +68,16 @@ const EmailForm = () => {
     };
 
     const deleteEmail = async (id) => {
-        const response = await axios.delete(
-            `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient/delete-email/${id}`
-        );
-        console.log(response.data);
         setRecipients((prevRecipients) => {
             const updatedRecipients = prevRecipients.filter(
                 (recipient) => recipient.id !== id
             );
             return updatedRecipients;
         });
+        const response = await axios.delete(
+            `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient/delete-email/${id}`
+        );
+        console.log(response.data);
     };
 
     // handle reset

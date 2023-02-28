@@ -10,7 +10,11 @@ const Status = ({ recipients, deleteEmail }) => {
                                 <p>
                                     <strong>Status:{recipient.status}</strong>
                                 </p>
-                                <p>{recipient.statusTime}</p>
+                                <p>
+                                    {new Date(
+                                        recipient.statusTime
+                                    ).toLocaleString("en-US")}
+                                </p>
                             </div>
                             <div className="body-sec">
                                 <p>
@@ -23,20 +27,24 @@ const Status = ({ recipients, deleteEmail }) => {
                                 </p>
                             </div>
                             <div className="time-log">
-                                <p className="dlt-btn-container">
+                                <div className="dlt-btn-container">
                                     <p>
                                         <strong>Sent:</strong>{" "}
-                                        {recipient.sentTime}
+                                        {new Date(
+                                            recipient.sentTime
+                                        ).toLocaleString("en-US")}
                                     </p>
-                                    <p
-                                        className="delete-btn"
-                                        onClick={() => {
-                                            deleteEmail(recipient.id);
-                                        }}
-                                    >
-                                        <span>+</span>
+                                    <p>
+                                        <button
+                                            className="delete-btn"
+                                            onClick={() => {
+                                                deleteEmail(recipient.id);
+                                            }}
+                                        >
+                                            +
+                                        </button>
                                     </p>
-                                </p>
+                                </div>
                                 <p className="recipient">
                                     <strong>Recipient:</strong>
                                     {recipient.recipient}
