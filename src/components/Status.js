@@ -6,6 +6,7 @@ const Status = ({ recipients, deleteEmail, loading, sentLoading, error }) => {
                 {loading && <h1>Loading...</h1>}
                 {!loading &&
                     !error &&
+                    Array.isArray(recipients) &&
                     recipients.length > 0 &&
                     recipients.map((recipient, index) => {
                         return (
