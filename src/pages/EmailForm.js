@@ -26,7 +26,7 @@ const EmailForm = () => {
                 // console.log(response.data);
             } catch (error) {
                 console.log(error);
-                setLoading(false);
+                setSentLoading(false);
             }
         };
         getAllRecipients();
