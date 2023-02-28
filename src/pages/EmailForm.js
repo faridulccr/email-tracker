@@ -26,7 +26,7 @@ const EmailForm = () => {
                 // console.log(response.data);
             } catch (error) {
                 console.log(error);
-                setSentLoading(false);
+                setLoading(false);
             }
         };
         getAllRecipients();
@@ -63,7 +63,7 @@ const EmailForm = () => {
             setSentLoading(false);
         } catch (error) {
             setError(true);
-            setLoading(false);
+            setSentLoading(false);
             console.error(error);
         }
     };
