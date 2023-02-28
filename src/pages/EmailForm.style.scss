@@ -51,17 +51,21 @@
         overflow-y: auto;
     }
 }
-
 .status-container {
     background-color: #7e638e;
     border-radius: 20px;
     padding: 10px 25px;
-    height: fit-content;
+    min-height: 90vh;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: start;
+    .sent-loading {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 450px) {
     .email-form-container {
         display: block;
     }

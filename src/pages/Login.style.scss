@@ -35,8 +35,9 @@
     display: flex;
     justify-content: right;
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 450px) {
     .login-form {
         width: 100%;
+        padding: 0 6px;
     }
 }

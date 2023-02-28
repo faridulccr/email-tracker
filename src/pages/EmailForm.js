@@ -11,6 +11,7 @@ const EmailForm = () => {
         message: "",
     });
     const [loading, setLoading] = useState(true);
+    const [sentLoading, setSentLoading] = useState(false);
     const [error, setError] = useState(false);
     const [recipients, setRecipients] = useState([]);
 
@@ -18,7 +19,7 @@ const EmailForm = () => {
         const getAllRecipients = async () => {
             try {
                 const response = await axios.get(
-                    "https://emailtrackerlive.herokuapp.com/recipient"
+                    `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient`
                 );
                 setRecipients(response.data);
                 setLoading(false);
@@ -45,9 +46,9 @@ const EmailForm = () => {
         event.preventDefault();
         try {
             setError(false);
-            setLoading(true);
+            setSentLoading(true);
             const response = await axios.post(
-                "https://emailtrackerlive.herokuapp.com/recipient/send-email",
+                `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient/send-email`,
                 {
                     adminEmail: process.env.REACT_APP_EMAIL_ID,
                     recipient: emailData.to,
@@ -59,7 +60,7 @@ const EmailForm = () => {
             setRecipients((prev) => {
                 return [...prev, response.data];
             });
-            setLoading(false);
+            setSentLoading(false);
         } catch (error) {
             setError(true);
             setLoading(false);
@@ -67,7 +68,19 @@ const EmailForm = () => {
         }
     };
 
-    const deleteEmail = (id) => {};
+    const deleteEmail = async (id) => {
+        setRecipients((prevRecipients) => {
+            const updatedRecipients = prevRecipients.filter(
+                (recipient) => recipient.id !== id
+            );
+            return updatedRecipients;
+        });
+        const response = await axios.delete(
+            `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient/delete-email/${id}`
+        );
+        console.log(response.data);
+    };
+
     // handle reset
     const handleReset = () => {
         setEmailData({
@@ -121,10 +134,13 @@ const EmailForm = () => {
                         <input type="submit" value="Send" />
                     </div>
                 </form>
-                {loading && <h1>Loading...</h1>}
-                {!loading && !error && recipients.length > 0 && (
-                    <Status recipients={recipients} deleteEmail={deleteEmail} />
-                )}
+                <Status
+                    recipients={recipients}
+                    deleteEmail={deleteEmail}
+                    loading={loading}
+                    sentLoading={sentLoading}
+                    error={error}
+                />
             </div>
         </>
     );

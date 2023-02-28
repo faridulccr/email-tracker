@@ -1,50 +1,68 @@
 import "./Status.style.scss";
-const Status = ({ recipients, deleteEmail }) => {
+const Status = ({ recipients, deleteEmail, loading, sentLoading, error }) => {
     return (
         <>
             <div className="status-container">
-                {recipients.map((recipient, index) => {
-                    return (
-                        <div className="status-card" key={index}>
-                            <div className="status-sec">
-                                <p>
-                                    <strong>Status:{recipient.status}</strong>
-                                </p>
-                                <p>{recipient.statusTime}</p>
-                            </div>
-                            <div className="body-sec">
-                                <p>
-                                    <strong>Subject:</strong>{" "}
-                                    {recipient.subject}
-                                </p>
-                                <p>
-                                    <strong>Message:</strong>{" "}
-                                    {recipient.message}
-                                </p>
-                            </div>
-                            <div className="time-log">
-                                <p className="dlt-btn-container">
-                                    <p>
-                                        <strong>Sent:</strong>{" "}
-                                        {recipient.sentTime}
-                                    </p>
-                                    <p
+                {loading && <h1>Loading...</h1>}
+                {!loading &&
+                    !error &&
+                    recipients.length > 0 &&
+                    recipients.map((recipient, index) => {
+                        return (
+                            <>
+                                <div className="all-card-container" key={index}>
+                                    <button
                                         className="delete-btn"
                                         onClick={() => {
                                             deleteEmail(recipient.id);
                                         }}
                                     >
-                                        <span>+</span>
-                                    </p>
-                                </p>
-                                <p className="recipient">
-                                    <strong>Recipient:</strong>
-                                    {recipient.recipient}
-                                </p>
-                            </div>
-                        </div>
-                    );
-                })}
+                                        +
+                                    </button>
+
+                                    <div className="status-card">
+                                        <div className="status-sec">
+                                            <p>
+                                                <strong>
+                                                    Status:
+                                                    {recipient.status}
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                {new Date(
+                                                    recipient.statusTime
+                                                ).toLocaleString("en-US")}
+                                            </p>
+                                        </div>
+                                        <div className="body-sec">
+                                            <p>
+                                                <strong>Subject:</strong>{" "}
+                                                {recipient.subject}
+                                            </p>
+                                            <p>
+                                                <strong>Message:</strong>{" "}
+                                                {recipient.message}
+                                            </p>
+                                        </div>
+                                        <div className="time-log">
+                                            <p>
+                                                <strong>Sent:</strong>{" "}
+                                                {new Date(
+                                                    recipient.sentTime
+                                                ).toLocaleString("en-US")}
+                                            </p>
+
+                                            <p className="recipient">
+                                                <strong>Recipient:</strong>
+                                                {recipient.recipient}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        );
+                    })}
+                {sentLoading && <h3 className="sent-loading">Loading...</h3>}
             </div>
         </>
     );
