@@ -50,6 +50,21 @@
         resize: none;
         overflow-y: auto;
     }
+
+    .use-cc-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        font-weight: bold;
+        // border: 1px solid black;
+        #use-cc {
+            display: inline-block;
+            margin-right: 7px;
+            margin-bottom: 0;
+            width: 20px;
+            height: 20px;
+        }
+    }
 }
 .status-container {
     background-color: #7e638e;
