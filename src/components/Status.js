@@ -72,7 +72,7 @@ const Status = ({ recipients, deleteEmail, loading, sentLoading, error }) => {
                                             </p>
 
                                             <p className="recipient">
-                                                <strong>Recipient:</strong>
+                                                <strong>Recipient: </strong>
                                                 {recipient.recipient}
                                             </p>
                                         </div>
