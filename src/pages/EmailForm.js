@@ -10,6 +10,7 @@ const EmailForm = () => {
         subject: "",
         message: "",
     });
+    const [useCC, setUseCC] = useState(false);
     const [loading, setLoading] = useState(true);
     const [sentLoading, setSentLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -35,15 +36,32 @@ const EmailForm = () => {
     // to handle user input
     const handleChange = (event) => {
         const userInput = event.target;
-        setEmailData({
-            ...emailData,
-            [userInput.name]: userInput.value,
-        });
+        if (userInput.name === "useCC") {
+            setUseCC(userInput.checked);
+        } else {
+            setEmailData({
+                ...emailData,
+                [userInput.name]: userInput.value,
+            });
+        }
     };
 
     // to handle form submit
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (useCC && emailData.to.length > 0) {
+            const ccEmails = emailData.to.split(",");
+            Array.isArray(ccEmails) &&
+                ccEmails.length > 0 &&
+                ccEmails.forEach((email) => {
+                    sentEmail(email);
+                });
+        } else {
+            sentEmail(emailData.to);
+        }
+    };
+
+    async function sentEmail(to) {
         try {
             setError(false);
             setSentLoading(true);
@@ -51,7 +69,7 @@ const EmailForm = () => {
                 `${process.env.REACT_APP_BACKEND_API_DOMAIN}/recipient/send-email`,
                 {
                     adminEmail: process.env.REACT_APP_EMAIL_ID,
-                    recipient: emailData.to,
+                    recipient: to,
                     subject: emailData.subject,
                     message: emailData.message,
                 }
@@ -66,7 +84,7 @@ const EmailForm = () => {
             setSentLoading(false);
             console.error(error);
         }
-    };
+    }
 
     const deleteEmail = async (id) => {
         setRecipients((prevRecipients) => {
@@ -106,13 +124,26 @@ const EmailForm = () => {
                         onChange={handleChange}
                         required
                     />
+                    <div className="use-cc-container">
+                        <input
+                            id="use-cc"
+                            type="checkbox"
+                            name="useCC"
+                            value={emailData.useCC}
+                            onChange={handleChange}
+                        />{" "}
+                        <label>Use CC format</label>
+                    </div>
                     <input
                         type="email"
                         name="to"
-                        placeholder="To"
+                        placeholder={
+                            useCC ? "Enter email separated by Comma" : "To"
+                        }
                         value={emailData.to}
                         onChange={handleChange}
                         required
+                        multiple={!!useCC}
                     />
                     <input
                         type="text"

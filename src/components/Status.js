@@ -1,3 +1,5 @@
+import openImage from "./circle-check-regular.svg";
+import sentImage from "./envelope-circle-check-solid.svg";
 import "./Status.style.scss";
 const Status = ({ recipients, deleteEmail, loading, sentLoading, error }) => {
     return (
@@ -23,12 +25,28 @@ const Status = ({ recipients, deleteEmail, loading, sentLoading, error }) => {
 
                                     <div className="status-card">
                                         <div className="status-sec">
-                                            <p>
+                                            <div className="status-img-container">
+                                                <strong>Status: </strong>
+                                                <img
+                                                    className="status-img"
+                                                    src={
+                                                        recipient.status ===
+                                                        "Sent"
+                                                            ? sentImage
+                                                            : openImage
+                                                    }
+                                                    style={
+                                                        recipient.status ===
+                                                        "Sent"
+                                                            ? { padding: "5px" }
+                                                            : { padding: 0 }
+                                                    }
+                                                    alt="status"
+                                                />
                                                 <strong>
-                                                    Status:
                                                     {recipient.status}
                                                 </strong>
-                                            </p>
+                                            </div>
                                             <p>
                                                 {new Date(
                                                     recipient.statusTime
@@ -54,7 +72,7 @@ const Status = ({ recipients, deleteEmail, loading, sentLoading, error }) => {
                                             </p>
 
                                             <p className="recipient">
-                                                <strong>Recipient:</strong>
+                                                <strong>Recipient: </strong>
                                                 {recipient.recipient}
                                             </p>
                                         </div>

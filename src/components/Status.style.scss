@@ -26,16 +26,30 @@
     padding: 10px 15px;
     margin-bottom: 20px;
     display: grid;
-    grid-template-columns: 20% 1fr 40%;
-    column-gap: 10px;
+    grid-template-columns: 20% 1fr 30%;
+    column-gap: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+
+    .status-img-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 5px;
+        .status-img {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(15, 240, 26);
+            border-radius: 50%;
+        }
+    }
 
     .status-sec,
     .body-sec,
     .time-log {
         display: flex;
         flex-direction: column;
-        column-gap: 15px;
-        justify-content: space-between;
+        row-gap: 20px;
         .recipient {
             overflow-x: auto;
         }
