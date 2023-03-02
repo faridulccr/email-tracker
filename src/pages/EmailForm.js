@@ -129,7 +129,7 @@ const EmailForm = () => {
                             id="use-cc"
                             type="checkbox"
                             name="useCC"
-                            value={emailData.useCC}
+                            value={useCC}
                             onChange={handleChange}
                         />{" "}
                         <label>Use CC format</label>
