@@ -47,7 +47,7 @@ const EmailForm = () => {
     };
 
     // to handle form submit
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         if (useCC && emailData.to.length > 0) {
             const ccEmails = emailData.to.split(",");
@@ -80,11 +80,8 @@ const EmailForm = () => {
             });
             setSentLoading(false);
         } catch (error) {
-            setError(true);
+            setError();
             setSentLoading(false);
-            setRecipients((prev) => {
-                return prev;
-            });
             console.error(error);
         }
     }
