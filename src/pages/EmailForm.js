@@ -53,8 +53,10 @@ const EmailForm = () => {
             const ccEmails = emailData.to.split(",");
             Array.isArray(ccEmails) &&
                 ccEmails.length > 0 &&
-                ccEmails.forEach((email) => {
-                    sentEmail(email);
+                ccEmails.forEach((email, index) => {
+                    setTimeout(() => {
+                        sentEmail(email);
+                    }, index * 10000);
                 });
         } else {
             sentEmail(emailData.to);
@@ -80,7 +82,7 @@ const EmailForm = () => {
             });
             setSentLoading(false);
         } catch (error) {
-            setError();
+            setError(true);
             setSentLoading(false);
             console.error(error);
         }
