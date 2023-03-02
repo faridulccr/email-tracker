@@ -10,17 +10,18 @@ const App = () => {
         let loginStatus = localStorage.getItem("loginStatus"); // it is JSON format
         if (loginStatus) {
             loginStatus = JSON.parse(loginStatus); // here JSON.parse create an Array
-            setIsLogin(loginStatus.isLogin);
+            const { adminEmail, adminPass } = loginStatus;
+            if (
+                adminEmail === process.env.REACT_APP_ADMIN &&
+                adminPass === process.env.REACT_APP_ADMIN_PASS
+            ) {
+                setIsLogin(true);
+            }
         }
         return () => {
             setTimeout(() => {
                 // set the isLogin false after 3 hours of unmount
-                localStorage.setItem(
-                    "loginStatus",
-                    JSON.stringify({
-                        isLogin: false,
-                    })
-                );
+                localStorage.setItem("loginStatus", JSON.stringify({}));
             }, 1000 * 60 * 60 * 3);
         };
     }, []);

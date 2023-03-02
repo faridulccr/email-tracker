@@ -30,7 +30,8 @@ const Login = () => {
             localStorage.setItem(
                 "loginStatus",
                 JSON.stringify({
-                    isLogin: true,
+                    adminEmail: process.env.REACT_APP_ADMIN,
+                    adminPass: process.env.REACT_APP_ADMIN_PASS,
                 })
             );
             navigate("/tracking-page");
