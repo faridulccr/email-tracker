@@ -17,6 +17,8 @@ const App = () => {
             ) {
                 setIsLogin(true);
             }
+        } else {
+            setIsLogin(false);
         }
         return () => {
             setTimeout(() => {
