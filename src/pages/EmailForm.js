@@ -82,6 +82,9 @@ const EmailForm = () => {
         } catch (error) {
             setError(true);
             setSentLoading(false);
+            setRecipients((prev) => {
+                return prev;
+            });
             console.error(error);
         }
     }
