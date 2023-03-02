@@ -54,7 +54,9 @@ const EmailForm = () => {
             Array.isArray(ccEmails) &&
                 ccEmails.length > 0 &&
                 ccEmails.forEach((email) => {
-                    sentEmail(email);
+                    setTimeout(() => {
+                        sentEmail(email);
+                    }, index * 7000);
                 });
         } else {
             sentEmail(emailData.to);
