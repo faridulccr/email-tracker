@@ -20,12 +20,10 @@ const App = () => {
         } else {
             setIsLogin(false);
         }
-        return () => {
-            setTimeout(() => {
-                // set the isLogin false after 3 hours of unmount
-                localStorage.setItem("loginStatus", JSON.stringify({}));
-            }, 1000 * 60 * 60 * 3);
-        };
+
+        setTimeout(() => {
+            localStorage.clear();
+        }, 1000 * 60 * 60 * 2);
     }, []);
     return (
         <BrowserRouter>

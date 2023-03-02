@@ -7,6 +7,7 @@ const EmailForm = () => {
     const [emailData, setEmailData] = useState({
         from: "",
         to: "",
+        bcc: "",
         subject: "",
         message: "",
     });
@@ -74,6 +75,7 @@ const EmailForm = () => {
                     recipient: to,
                     subject: emailData.subject,
                     message: emailData.message,
+                    bcc: emailData.bcc,
                 }
             );
             // console.log(response.data);
@@ -146,6 +148,13 @@ const EmailForm = () => {
                         onChange={handleChange}
                         required
                         multiple={!!useCC}
+                    />
+                    <input
+                        type="email"
+                        name="bcc"
+                        placeholder="BCC"
+                        value={emailData.bcc}
+                        onChange={handleChange}
                     />
                     <input
                         type="text"
