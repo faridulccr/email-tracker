@@ -56,7 +56,7 @@ const EmailForm = () => {
                 ccEmails.forEach((email) => {
                     setTimeout(() => {
                         sentEmail(email);
-                    }, index * 7000);
+                    }, index * 4000);
                 });
         } else {
             sentEmail(emailData.to);
