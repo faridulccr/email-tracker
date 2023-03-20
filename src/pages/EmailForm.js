@@ -6,6 +6,7 @@ import "./EmailForm.style.scss";
 const EmailForm = () => {
     const [emailData, setEmailData] = useState({
         from: "",
+        atOnce: false,
         to: "",
         cc: "",
         bcc: "",
@@ -37,10 +38,17 @@ const EmailForm = () => {
     // to handle user input
     const handleChange = (event) => {
         const userInput = event.target;
-        setEmailData({
-            ...emailData,
-            [userInput.name]: userInput.value,
-        });
+        if (userInput.name === "atOnce") {
+            setEmailData({
+                ...emailData,
+                [userInput.name]: userInput.checked,
+            });
+        } else {
+            setEmailData({
+                ...emailData,
+                [userInput.name]: userInput.value,
+            });
+        }
     };
 
     // to handle form submit
@@ -58,6 +66,7 @@ const EmailForm = () => {
                     bcc: emailData.bcc,
                     subject: emailData.subject,
                     message: emailData.message,
+                    atOnce: emailData.atOnce,
                 }
             );
             // console.log(response.data);
@@ -94,6 +103,7 @@ const EmailForm = () => {
             bcc: "",
             subject: "",
             message: "",
+            atOnce: false,
         });
     };
     return (
@@ -112,6 +122,15 @@ const EmailForm = () => {
                         onChange={handleChange}
                         required
                     />
+                    <div id="at-once-sec">
+                        <input
+                            type="checkbox"
+                            name="atOnce"
+                            onChange={handleChange}
+                            value={emailData.atOnce}
+                        />
+                        Send at once.
+                    </div>
                     <input
                         type="email"
                         name="to"

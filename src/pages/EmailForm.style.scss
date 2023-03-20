@@ -8,6 +8,17 @@
 .email-form {
     height: fit-content;
 
+    #at-once-sec {
+        display: flex;
+        column-gap: 10px;
+        font-size: 17px;
+        font-weight: 600;
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
     input {
         border: none;
         background-color: rgba(0, 0, 0, 0.1);
