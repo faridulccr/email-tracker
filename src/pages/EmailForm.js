@@ -118,7 +118,7 @@ const EmailForm = () => {
                         placeholder="To"
                         value={emailData.to}
                         onChange={handleChange}
-                        required
+                        multiple
                     />
                     <input
                         type="email"
