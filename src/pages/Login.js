@@ -27,7 +27,7 @@ const Login = () => {
             formData.password === process.env.REACT_APP_ADMIN_PASS
         ) {
             setIsMatch(true);
-            localStorage.setItem(
+            sessionStorage.setItem(
                 "loginStatus",
                 JSON.stringify({
                     adminEmail: process.env.REACT_APP_ADMIN,

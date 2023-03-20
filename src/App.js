@@ -7,7 +7,7 @@ const App = () => {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        let loginStatus = localStorage.getItem("loginStatus"); // it is JSON format
+        let loginStatus = sessionStorage.getItem("loginStatus"); // it is JSON format
         if (loginStatus) {
             loginStatus = JSON.parse(loginStatus); // here JSON.parse create an Array
             const { adminEmail, adminPass } = loginStatus;
@@ -20,10 +20,6 @@ const App = () => {
         } else {
             setIsLogin(false);
         }
-
-        setTimeout(() => {
-            localStorage.clear();
-        }, 1000 * 60 * 60 * 2);
     }, []);
     return (
         <BrowserRouter>
